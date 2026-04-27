@@ -1,4 +1,4 @@
-# Python
+# Python (qayta yaratiladigan)
 __pycache__/
 *.py[cod]
 *$py.class
@@ -8,10 +8,7 @@ env/
 venv/
 .venv/
 
-# Django
-*.sqlite3
-db.sqlite3
-/media/
+# collectstatic chiqishi (loyihada bo‘lsa)
 staticfiles/
 
 # IDE / OS
@@ -21,6 +18,6 @@ staticfiles/
 Thumbs.db
 Desktop.ini
 
-# Mahalliy maxfiy sozlamalar
+# Maxfiy muhit o‘zgaruvchilari
 .env
 .env.local
