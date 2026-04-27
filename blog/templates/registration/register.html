@@ -1,0 +1,45 @@
+{% extends "blog/base.html" %}
+{% load static %}
+{% block title %}Ro‘yxatdan o‘tish — Blog{% endblock %}
+{% block content %}
+<h1>Ro‘yxatdan o‘tish</h1>
+<form method="post" class="form" novalidate>
+  {% csrf_token %}
+  {% if form.non_field_errors %}
+    <ul class="errorlist">{% for e in form.non_field_errors %}<li>{{ e }}</li>{% endfor %}</ul>
+  {% endif %}
+  {% for field in form %}
+    {% if field.name == "password1" or field.name == "password2" %}
+      <div class="field field-password">
+        {{ field.label_tag }}
+        <div class="password-wrap">
+          {{ field }}
+          {% include "blog/includes/password_toggle_button.html" %}
+        </div>
+        {% if field.help_text and not field.errors %}
+          <p class="helptext">{{ field.help_text|safe }}</p>
+        {% endif %}
+        {% if field.errors %}
+          <ul class="errorlist">{% for e in field.errors %}<li>{{ e }}</li>{% endfor %}</ul>
+        {% endif %}
+      </div>
+    {% else %}
+      <div class="field">
+        {{ field.label_tag }}
+        {{ field }}
+        {% if field.help_text and not field.errors %}
+          <p class="helptext">{{ field.help_text|safe }}</p>
+        {% endif %}
+        {% if field.errors %}
+          <ul class="errorlist">{% for e in field.errors %}<li>{{ e }}</li>{% endfor %}</ul>
+        {% endif %}
+      </div>
+    {% endif %}
+  {% endfor %}
+  <button type="submit" class="btn-primary">Ro‘yxatdan o‘tish</button>
+</form>
+<p><a href="{% url 'blog:login' %}">Allaqachon akkauntingiz bormi?</a></p>
+{% endblock %}
+{% block page_scripts %}
+<script src="{% static 'blog/password-toggle.js' %}" defer></script>
+{% endblock %}

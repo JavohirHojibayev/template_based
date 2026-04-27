@@ -1,0 +1,23 @@
+{% if posts %}
+  <div class="grid">
+    {% for p in posts %}
+      <article class="card">
+        <a href="{{ p.get_absolute_url }}">
+          {% if p.image %}
+            <img src="{{ p.image.url }}" alt="" class="thumb">
+          {% endif %}
+          <h3>{{ p.title }}</h3>
+        </a>
+        <p class="meta">
+          {{ p.category.name }} · {{ p.author.username }} · {{ p.created_at|date:"d.m.Y" }}
+          · {{ p.view_count }} ko‘rish
+        </p>
+        {% if p.tags.all %}
+          <p class="tags">{% for t in p.tags.all %}<span class="tag">{{ t.name }}</span>{% endfor %}</p>
+        {% endif %}
+      </article>
+    {% endfor %}
+  </div>
+{% else %}
+  <p class="muted">Hozircha postlar yo‘q.</p>
+{% endif %}

@@ -1,0 +1,18 @@
+{% extends "blog/base.html" %}
+{% block title %}Yangi post — Blog{% endblock %}
+{% block content %}
+<h1>Yangi post</h1>
+<p class="muted">Post admin tomonidan tasdiqlangach barcha foydalanuvchilarga ko‘rinadi.</p>
+<form method="post" enctype="multipart/form-data" class="form" novalidate>
+  {% csrf_token %}
+  {% for field in form %}
+    <div class="field">
+      {{ field.label_tag }}
+      {{ field }}
+      {% if field.help_text and not field.errors %}<p class="helptext">{{ field.help_text }}</p>{% endif %}
+      {% if field.errors %}<ul class="errorlist">{% for e in field.errors %}<li>{{ e }}</li>{% endfor %}</ul>{% endif %}
+    </div>
+  {% endfor %}
+  <button type="submit" class="btn-primary">Yuborish</button>
+</form>
+{% endblock %}

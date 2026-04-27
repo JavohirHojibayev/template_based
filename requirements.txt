@@ -1,0 +1,4 @@
+# Django admin (mahalliy dev): login=admin, parol=admin
+# Admin yaratish/yangilash: python manage.py setup_dev_admin
+Django==5.2.7
+Pillow==11.1.0

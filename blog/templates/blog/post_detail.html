@@ -1,0 +1,54 @@
+{% extends "blog/base.html" %}
+{% block title %}{{ post.title }} — Blog{% endblock %}
+{% block content %}
+<article class="post-single">
+  <p class="meta">
+    <a href="{% url 'blog:home' %}#latest">← Bosh sahifa</a>
+    · {{ post.category.name }}
+    · {{ post.author.username }}
+    · {{ post.created_at|date:"d.m.Y H:i" }}
+    · {{ post.view_count }} ko‘rish
+    {% if not post.is_approved %}
+      <span class="badge badge-warn">Tasdiqlanmagan (faqat siz ko‘rasiz)</span>
+    {% endif %}
+  </p>
+  <h1>{{ post.title }}</h1>
+  {% if post.image %}
+    <figure class="hero"><img src="{{ post.image.url }}" alt=""></figure>
+  {% endif %}
+  {% if post.tags.all %}
+    <p class="tags">{% for t in post.tags.all %}<span class="tag">{{ t.name }}</span>{% endfor %}</p>
+  {% endif %}
+  <div class="body">{{ post.content|linebreaks }}</div>
+</article>
+
+<section class="section comments-block">
+  <h2>Izohlar</h2>
+  {% for c in comments %}
+    <div class="comment">
+      <strong>{{ c.author.username }}</strong>
+      <span class="muted small">{{ c.created_at|date:"d.m.Y H:i" }}</span>
+      <p>{{ c.body|linebreaks }}</p>
+    </div>
+  {% empty %}
+    <p class="muted">Hozircha izoh yo‘q.</p>
+  {% endfor %}
+
+  {% if user.is_authenticated %}
+    <h3>Izoh qoldirish</h3>
+    <form method="post" class="form" novalidate>
+      {% csrf_token %}
+      {% for field in form %}
+        <div class="field">
+          {{ field.label_tag }}
+          {{ field }}
+          {% if field.errors %}<ul class="errorlist">{% for e in field.errors %}<li>{{ e }}</li>{% endfor %}</ul>{% endif %}
+        </div>
+      {% endfor %}
+      <button type="submit" class="btn-primary">Yuborish</button>
+    </form>
+  {% else %}
+    <p><a href="{% url 'blog:login' %}">Kiring</a> yoki <a href="{% url 'blog:register' %}">ro‘yxatdan o‘ting</a> — izoh qoldirish uchun.</p>
+  {% endif %}
+</section>
+{% endblock %}

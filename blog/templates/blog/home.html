@@ -1,0 +1,33 @@
+{% extends "blog/base.html" %}
+{% block title %}Bosh sahifa — Blog{% endblock %}
+{% block content %}
+<h1>Bosh sahifa</h1>
+<p class="lead">Tasdiqlangan postlar bo‘yicha bloklar.</p>
+
+<section class="section" id="latest">
+  <h2>Eng yangi postlar</h2>
+  {% include "blog/_post_cards.html" with posts=latest %}
+</section>
+
+<section class="section" id="most-viewed">
+  <h2>Eng ko‘p ko‘rilgan postlar</h2>
+  {% include "blog/_post_cards.html" with posts=most_viewed %}
+</section>
+
+<section class="section" id="week">
+  <h2>Haftaning eng ommabop postlari</h2>
+  <p class="muted small">Oxirgi 7 kun ichida yaratilgan postlar, ko‘rishlar bo‘yicha.</p>
+  {% include "blog/_post_cards.html" with posts=week_popular %}
+</section>
+
+<section class="section" id="month">
+  <h2>Oyning eng ommabop postlari</h2>
+  <p class="muted small">Oxirgi 30 kun ichida yaratilgan postlar, ko‘rishlar bo‘yicha.</p>
+  {% include "blog/_post_cards.html" with posts=month_popular %}
+</section>
+
+<section class="section" id="recommended">
+  <h2>Tavsiya qilingan postlar</h2>
+  {% include "blog/_post_cards.html" with posts=recommended %}
+</section>
+{% endblock %}

@@ -1,0 +1,39 @@
+{% extends "blog/base.html" %}
+{% load static %}
+{% block title %}Kirish — Blog{% endblock %}
+{% block content %}
+<h1>Tizimga kirish</h1>
+<form method="post" class="form" novalidate>
+  {% csrf_token %}
+  {% if form.non_field_errors %}
+    <ul class="errorlist">{% for e in form.non_field_errors %}<li>{{ e }}</li>{% endfor %}</ul>
+  {% endif %}
+  {% for field in form %}
+    {% if field.name == "password" %}
+      <div class="field field-password">
+        {{ field.label_tag }}
+        <div class="password-wrap">
+          {{ field }}
+          {% include "blog/includes/password_toggle_button.html" %}
+        </div>
+        {% if field.errors %}
+          <ul class="errorlist">{% for e in field.errors %}<li>{{ e }}</li>{% endfor %}</ul>
+        {% endif %}
+      </div>
+    {% else %}
+      <div class="field">
+        {{ field.label_tag }}
+        {{ field }}
+        {% if field.errors %}
+          <ul class="errorlist">{% for e in field.errors %}<li>{{ e }}</li>{% endfor %}</ul>
+        {% endif %}
+      </div>
+    {% endif %}
+  {% endfor %}
+  <button type="submit" class="btn-primary">Kirish</button>
+</form>
+<p><a href="{% url 'blog:register' %}">Ro‘yxatdan o‘tmadingizmi?</a></p>
+{% endblock %}
+{% block page_scripts %}
+<script src="{% static 'blog/password-toggle.js' %}" defer></script>
+{% endblock %}

@@ -1,0 +1,49 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{% block title %}Blog{% endblock %}</title>
+  <link rel="stylesheet" href="{% static 'blog/style.css' %}">
+</head>
+<body>
+  <header class="site-header">
+    <div class="wrap header-inner">
+      <a class="logo" href="{% url 'blog:home' %}">Blog</a>
+      <nav class="nav">
+        <a href="{% url 'blog:home' %}">Bosh sahifa</a>
+        {% if user.is_authenticated %}
+          <a href="{% url 'blog:post_create' %}">Yangi post</a>
+          <a href="{% url 'blog:my_posts' %}">Mening postlarim</a>
+          <span class="user">{{ user.username }}</span>
+          <form class="inline-form" action="{% url 'blog:logout' %}" method="post">
+            {% csrf_token %}
+            <button type="submit" class="link-btn">Chiqish</button>
+          </form>
+        {% else %}
+          <a href="{% url 'blog:login' %}">Kirish</a>
+          <a href="{% url 'blog:register' %}">Ro‘yxatdan o‘tish</a>
+        {% endif %}
+      </nav>
+    </div>
+  </header>
+
+  {% if messages %}
+    <div class="wrap messages messages-banner" role="status" aria-live="polite">
+      {% for message in messages %}
+        <p class="msg msg-{{ message.tags }}">{{ message }}</p>
+      {% endfor %}
+    </div>
+  {% endif %}
+
+  <main class="wrap main">
+    {% block content %}{% endblock %}
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap muted">Django template-based blog</div>
+  </footer>
+  {% block page_scripts %}{% endblock %}
+</body>
+</html>

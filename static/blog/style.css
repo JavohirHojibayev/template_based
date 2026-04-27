@@ -1,0 +1,248 @@
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  font-family: system-ui, "Segoe UI", Roboto, sans-serif;
+  line-height: 1.5;
+  color: #1a1a1a;
+  background: #f6f7f9;
+}
+.wrap { max-width: 960px; margin: 0 auto; padding: 0 1rem; }
+.site-header {
+  background: #1e3a5f;
+  color: #fff;
+}
+.header-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  flex-wrap: wrap;
+  padding: 0.75rem 1rem;
+}
+.logo { color: #fff; text-decoration: none; font-weight: 700; }
+.nav { display: flex; flex-wrap: wrap; align-items: center; gap: 0.75rem 1rem; }
+.nav a { color: #dbe7ff; text-decoration: none; }
+.nav a:hover { text-decoration: underline; }
+.user { color: #a8c7ff; font-size: 0.9rem; }
+.inline-form { display: inline; margin: 0; }
+.link-btn {
+  background: none;
+  border: none;
+  color: #dbe7ff;
+  cursor: pointer;
+  font: inherit;
+  padding: 0;
+  text-decoration: underline;
+}
+.main { padding: 1.5rem 1rem 3rem; }
+.site-footer { border-top: 1px solid #ddd; padding: 1rem; margin-top: 2rem; }
+.muted { color: #555; }
+.small { font-size: 0.875rem; }
+.lead { font-size: 1.05rem; }
+.messages-banner {
+  padding-top: 0.75rem;
+}
+.messages .msg {
+  padding: 0.65rem 1rem;
+  border-radius: 8px;
+  margin: 0.5rem 0;
+  border: 1px solid transparent;
+}
+.msg-success {
+  background: #d4edda;
+  color: #0f3d1f;
+  border-color: #a3cfbb;
+  font-weight: 600;
+}
+.msg-error, .msg-warning { background: #fff3cd; color: #856404; border-color: #e6d4a2; }
+
+/* Parol: ko‘rsatish / yashirish */
+.field-password .password-wrap {
+  position: relative;
+  max-width: 36rem;
+}
+.field-password .password-wrap > input {
+  width: 100%;
+  padding-right: 3rem;
+}
+.password-toggle {
+  position: absolute;
+  right: 0.4rem;
+  top: 50%;
+  transform: translateY(-50%);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.35rem;
+  height: 2.35rem;
+  padding: 0;
+  margin: 0;
+  border: none;
+  border-radius: 6px;
+  background: #e8ecf2;
+  color: #1e3a5f;
+  cursor: pointer;
+  line-height: 0;
+}
+.password-toggle:hover {
+  background: #d5dde8;
+}
+.password-toggle:focus-visible {
+  outline: 2px solid #1e3a5f;
+  outline-offset: 2px;
+}
+.password-toggle__icons {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+.password-toggle__icons .ico-hide {
+  display: none;
+}
+.password-wrap.is-visible .password-toggle__icons .ico-show {
+  display: none;
+}
+.password-wrap.is-visible .password-toggle__icons .ico-hide {
+  display: inline-flex;
+}
+h1 { margin-top: 0; }
+.section { margin-top: 2rem; padding-top: 1rem; border-top: 1px solid #ddd; }
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 1rem;
+}
+.card {
+  background: #fff;
+  border-radius: 8px;
+  padding: 0.75rem;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+}
+.card a { text-decoration: none; color: inherit; }
+.card a:hover h3 { text-decoration: underline; }
+.card h3 { margin: 0.35rem 0; font-size: 1rem; }
+.thumb {
+  width: 100%;
+  height: 120px;
+  object-fit: cover;
+  border-radius: 6px;
+  display: block;
+}
+.meta { font-size: 0.85rem; color: #555; margin: 0.25rem 0; }
+.tags { margin: 0.25rem 0 0; }
+.tag {
+  display: inline-block;
+  background: #e8eef5;
+  padding: 0.1rem 0.45rem;
+  border-radius: 4px;
+  font-size: 0.8rem;
+  margin-right: 0.25rem;
+}
+.post-single .hero img {
+  max-width: 100%;
+  border-radius: 8px;
+}
+.post-single .body { margin-top: 1rem; }
+.comments-block .comment {
+  background: #fff;
+  padding: 0.75rem 1rem;
+  border-radius: 8px;
+  margin-bottom: 0.75rem;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.06);
+}
+/* Formalar: barcha maydonlar aniq ko‘rinsin (type tanlamasdan) */
+.form .field {
+  margin-bottom: 1.1rem;
+}
+.form .field label {
+  display: block;
+  font-weight: 600;
+  margin-bottom: 0.35rem;
+  color: #222;
+}
+.input-control,
+.form .field input:not([type="hidden"]):not([type="checkbox"]):not([type="radio"]),
+.form .field textarea,
+.form .field select {
+  display: block;
+  width: 100%;
+  max-width: 36rem;
+  padding: 0.55rem 0.65rem;
+  font: inherit;
+  line-height: 1.4;
+  color: #111;
+  background: #fff;
+  border: 1px solid #6a7a8f;
+  border-radius: 6px;
+  box-sizing: border-box;
+}
+.input-control:not([type="file"]),
+.form .field input:not([type="hidden"]):not([type="checkbox"]):not([type="radio"]):not([type="file"]),
+.form .field textarea,
+.form .field select {
+  min-height: 2.5rem;
+}
+.form .field textarea {
+  min-height: 6rem;
+  resize: vertical;
+}
+.input-control[type="file"],
+.form .field input.input-file {
+  padding: 0.35rem;
+}
+.form .field ul {
+  list-style: none;
+  padding-left: 0;
+  margin: 0.35rem 0 0;
+}
+.form .field ul li {
+  margin: 0.35rem 0;
+}
+.form .field ul li label {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-weight: normal;
+  cursor: pointer;
+}
+.form .field ul li input[type="checkbox"],
+.form .field ul li input[type="radio"] {
+  width: auto;
+  margin: 0;
+}
+.helptext {
+  font-size: 0.85rem;
+  color: #444;
+  margin: 0.35rem 0 0;
+  max-width: 36rem;
+}
+.errorlist {
+  color: #b00020;
+  font-size: 0.9rem;
+  margin: 0.35rem 0 0;
+  padding-left: 1.1rem;
+}
+.btn-primary,
+.form button[type="submit"] {
+  padding: 0.55rem 1.25rem;
+  cursor: pointer;
+  background: #1e3a5f;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  font: inherit;
+  font-weight: 600;
+}
+.btn-primary:hover,
+.form button[type="submit"]:hover {
+  background: #2d5080;
+}
+.list { padding-left: 1.25rem; }
+.badge {
+  font-size: 0.75rem;
+  padding: 0.15rem 0.4rem;
+  border-radius: 4px;
+  margin-left: 0.25rem;
+}
+.badge-ok { background: #d4edda; color: #155724; }
+.badge-warn { background: #fff3cd; color: #856404; }

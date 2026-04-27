@@ -1,0 +1,26 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+.venv/
+
+# Django
+*.sqlite3
+db.sqlite3
+/media/
+staticfiles/
+
+# IDE / OS
+.idea/
+.vscode/
+*.swp
+Thumbs.db
+Desktop.ini
+
+# Mahalliy maxfiy sozlamalar
+.env
+.env.local
